@@ -1,10 +1,11 @@
 package data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity(name="auta")
 public class Auta {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="id")
     private Integer id;
 
