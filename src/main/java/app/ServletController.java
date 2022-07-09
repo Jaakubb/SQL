@@ -6,11 +6,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import repo.AutaRepo;
+import repo.CennikRepo;
 
 @RestController
 public class ServletController {
     @Autowired
     AutaRepo auta;
+
+    @Autowired
+    CennikRepo cena;
 
     @RequestMapping(
             value="/hello",
@@ -31,4 +35,12 @@ public class ServletController {
         }
         return b;
     }
+    @RequestMapping(
+            value="/idc",
+            method= RequestMethod.GET
+    )
+    public Integer idc(@RequestParam("c") Integer idc){
+        return cena.findByidc(idc).get(0).getCena();
+    }
+
 }
