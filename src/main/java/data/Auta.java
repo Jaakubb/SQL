@@ -2,7 +2,8 @@ package data;
 
 import javax.persistence.*;
 
-@Entity(name="auta")
+@Entity
+@Table(name="auta")
 public class Auta {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

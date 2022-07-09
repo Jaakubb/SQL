@@ -2,7 +2,8 @@ package data;
 
 import javax.persistence.*;
 
-@Entity(name="cennik")
+@Entity
+@Table(name="cennik")
 public class Cennik {
 
     @Id
