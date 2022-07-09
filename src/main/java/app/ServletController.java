@@ -50,7 +50,7 @@ public class ServletController {
             value="/imie",
             method= RequestMethod.GET
     )
-    public String imie(RequestParam("i")String imie){
+    public String imie(@RequestParam("i") String imie){
         return auto.findByimie(imie).get(0).getAuto();
 
     }
