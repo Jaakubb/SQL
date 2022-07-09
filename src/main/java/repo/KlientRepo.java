@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface KlientRepo extends CrudRepository<Klient, Integer>{
-    List<Klient> findByidk (Integer idk);
+    List<Klient> findByimie (String imie);
 }
