@@ -1,5 +1,11 @@
 package app;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.ObjectCodec;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import data.Auta;
 import data.Klient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +94,20 @@ public class ServletController {
     @RequestMapping(
             value="/listaaut",
             method= RequestMethod.GET)
-    public void listaaut(){
+    public String listaaut() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        String result= "";
+        ArrayNode array = mapper.createArrayNode();
+        for(Auta cust : auta.findAll()){
+            JsonNode samochod = mapper.valueToTree(cust);
+            ObjectNode jNode = mapper.createObjectNode();
+            jNode.put("id", samochod.get("id"));
+            jNode.put("nazwa", samochod.get("nazwa"));
+            jNode.put("predkosc",samochod.get("predkosc"));
+            array.add(jNode);
+        }
+        result = "{\"Auta\":" +mapper.writeValueAsString(array) + "}";
+        return result;
 
     }
 
