@@ -85,6 +85,13 @@ public class ServletController {
     public void dodawanie(@RequestParam Integer id, @RequestParam String nazwa, @RequestParam Integer predkosc){
         auta.save(new Auta(id,nazwa,predkosc));
     }
+    @RequestMapping(
+            value="/listaaut",
+            method= RequestMethod.GET)
+    public void listaaut(){
+
+    }
+
 
 
 
