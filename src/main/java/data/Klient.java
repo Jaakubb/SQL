@@ -3,7 +3,7 @@ package data;
 import javax.persistence.*;
 
 @Entity
-@Table(name="klient")
+@Table(name="klienci")
 public class Klient {
 
     @Id

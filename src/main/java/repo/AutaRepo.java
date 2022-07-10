@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface AutaRepo extends CrudRepository<Auta, Integer> {
     List<Auta> findBynazwa(String nazwa);
+    List<Auta> findByid(Integer id);
 }

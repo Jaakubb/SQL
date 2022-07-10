@@ -1,10 +1,9 @@
 package app;
 
+import data.Auta;
+import data.Klient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import repo.AutaRepo;
 import repo.CennikRepo;
 import repo.KlientRepo;
@@ -54,5 +53,39 @@ public class ServletController {
         return auto.findByimie(imie).get(0).getAuto();
 
     }
+
+    @RequestMapping(
+            value= "/wypisywanie",
+            method= RequestMethod.POST)
+    public String wypisywanie(@RequestBody String jsondata){
+        return jsondata;
+    }
+    @RequestMapping(
+            value= "/usuwanie",
+            method= RequestMethod.GET)
+    public void usuwanie(@RequestParam String typ,@RequestParam String id){
+        if (typ.equals("a")){
+            auta.delete(auta.findByid(Integer.parseInt(id)).get(0));
+
+        }
+        if (typ.equals("k")){
+            System.out.println(id);
+            for(Klient klient : auto.findAll()){
+                System.out.println(klient.getIdk());
+            }
+            auto.delete(auto.findByidk(Integer.parseInt(id)).get(0));
+        }
+        if (typ.equals("c")){
+            cena.delete(cena.findByidc(Integer.parseInt(id)).get(0));
+        }
+    }
+    @RequestMapping(
+            value= "/dodawanie",
+            method= RequestMethod.GET)
+    public void dodawanie(@RequestParam Integer id, @RequestParam String nazwa, @RequestParam Integer predkosc){
+        auta.save(new Auta(id,nazwa,predkosc));
+    }
+
+
 
 }
